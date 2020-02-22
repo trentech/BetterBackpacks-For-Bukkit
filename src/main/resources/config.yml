@@ -1,0 +1,152 @@
+# Material list: 'http://jd.bukkit.org/rb/apidocs/org/bukkit/Material.html'
+# Item ID list: 'http://www.minecraftinfo.com/idlist.htm'
+# Days-Before-Removal: 60                   # number of days before old unused backpacks are removed from database. Recommended for large servers.
+# Backpack9:                                # The number represents the number of Slots the backpack has.
+#   Enable: true                            # Enable or disable backpack
+#   Material: MONSTER_EGG                   # Use the Material list above to find the correct values.
+#   Durability: 50                          # Use the Item ID list above to find the correct values. ex. Spruce planks is 5:1, durability would be 1. default value for items with no durability is 0 
+#   Recipe:                                 # Each line represents a row in the crafting table with three comma separated items representing Slots. If you want to make a Slot empty put EMPTY in that field.
+#   - LEATHER,LEATHER,LEATHER
+#   - WOOL:1,CHEST,WOOL:1                   # Here is an example of using Orange Wool, by adding the Material name followed by its durability value.
+#   - LEATHER,LEATHER,LEATHER
+#
+Days-Before-Removal: 60
+
+Backpack9:
+  Enable: true
+  Result:
+    type: BAT_SPAWN_EGG
+  Recipe:
+    Slot0:
+      type: LEATHER
+    Slot1:
+      type: LEATHER
+    Slot2:
+      type: LEATHER
+    Slot3:
+      type: LEATHER
+    Slot4:
+      type: CHEST
+    Slot5:
+      type: LEATHER
+    Slot6:
+      type: LEATHER
+    Slot7:
+      type: LEATHER
+    Slot8:
+      type: LEATHER
+Backpack18:
+  Enable: true
+  Result:
+    type: SKELETON_SPAWN_EGG
+  Recipe:
+    Slot0:
+      type: IRON_INGOT
+    Slot1:
+      type: IRON_INGOT
+    Slot2:
+      type: IRON_INGOT
+    Slot3:
+      type: LEATHER
+    Slot4:
+      type: CHEST
+    Slot5:
+      type: LEATHER
+    Slot6:
+      type: IRON_INGOT
+    Slot7:
+      type: IRON_INGOT
+    Slot8:
+      type: IRON_INGOT
+Backpack27:
+  Enable: true
+  Result:
+    type: COW_SPAWN_EGG
+  Recipe:
+    Slot0:
+      type: GOLD_INGOT
+    Slot1:
+      type: GOLD_INGOT
+    Slot2:
+      type: GOLD_INGOT
+    Slot3:
+      type: LEATHER
+    Slot4:
+      type: CHEST
+    Slot5:
+      type: LEATHER
+    Slot6:
+      type: GOLD_INGOT
+    Slot7:
+      type: GOLD_INGOT
+    Slot8:
+      type: GOLD_INGOT
+Backpack36:
+  Enable: true
+  Result: 
+    type: CHICKEN_SPAWN_EGG
+  Recipe:
+    Slot0:
+      type: IRON_BLOCK
+    Slot1:
+      type: IRON_BLOCK
+    Slot2:
+      type: IRON_BLOCK
+    Slot3:
+      type: LEATHER
+    Slot4:
+      type: CHEST
+    Slot5:
+      type: LEATHER
+    Slot6:
+      type: IRON_BLOCK
+    Slot7:
+      type: IRON_BLOCK
+    Slot8:
+      type: IRON_BLOCK
+Backpack45:
+  Enable: true
+  Result:
+    type: ZOMBIE_SPAWN_EGG
+  Recipe:
+    Slot0:
+      type: GOLD_BLOCK
+    Slot1:
+      type: GOLD_BLOCK
+    Slot2:
+      type: GOLD_BLOCK
+    Slot3:
+      type: LEATHER
+    Slot4:
+      type: CHEST
+    Slot5:
+      type: LEATHER
+    Slot6:
+      type: GOLD_BLOCK
+    Slot7:
+      type: GOLD_BLOCK
+    Slot8:
+      type: GOLD_BLOCK
+Backpack54:
+  Enable: true
+  Result:
+    type: SPIDER_SPAWN_EGG
+  Recipe:
+    Slot0:
+      type: DIAMOND
+    Slot1:
+      type: DIAMOND
+    Slot2:
+      type: DIAMOND
+    Slot3:
+      type: LEATHER
+    Slot4:
+      type: CHEST
+    Slot5:
+      type: LEATHER
+    Slot6:
+      type: DIAMOND
+    Slot7:
+      type: DIAMOND
+    Slot8:
+      type: DIAMOND

@@ -1,0 +1,22 @@
+name: BetterBackpacks
+main: org.trentech.betterbackpacks.BetterBackpacks
+version: 1.3.0
+api-version: 1.13
+commands:
+  backpack:
+    description: Better Backpacks
+    usage: </command>
+    aliases: [bp]
+permissions:
+  BetterBackpacks.*:
+    default: op
+    children:
+      BetterBackpacks.openothers: true
+      BetterBackpacks.give: true
+      BetterBackpacks.reload: true
+  BetterBackpacks.openother:
+    default: op
+  BetterBackpacks.give:
+    default: op
+  BetterBackpacks.reload:
+    default: op
