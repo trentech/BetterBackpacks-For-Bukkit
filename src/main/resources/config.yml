@@ -1,17 +1,3 @@
-# Material list: 'http://jd.bukkit.org/rb/apidocs/org/bukkit/Material.html'
-# Item ID list: 'http://www.minecraftinfo.com/idlist.htm'
-# Days-Before-Removal: 60                   # number of days before old unused backpacks are removed from database. Recommended for large servers.
-# Backpack9:                                # The number represents the number of Slots the backpack has.
-#   Enable: true                            # Enable or disable backpack
-#   Material: MONSTER_EGG                   # Use the Material list above to find the correct values.
-#   Durability: 50                          # Use the Item ID list above to find the correct values. ex. Spruce planks is 5:1, durability would be 1. default value for items with no durability is 0 
-#   Recipe:                                 # Each line represents a row in the crafting table with three comma separated items representing Slots. If you want to make a Slot empty put EMPTY in that field.
-#   - LEATHER,LEATHER,LEATHER
-#   - WOOL:1,CHEST,WOOL:1                   # Here is an example of using Orange Wool, by adding the Material name followed by its durability value.
-#   - LEATHER,LEATHER,LEATHER
-#
-Days-Before-Removal: 60
-
 Backpack9:
   Enable: true
   Result: BAT_SPAWN_EGG
@@ -33,7 +19,7 @@ Backpack18:
     Slot1: IRON_INGOT
     Slot2: IRON_INGOT
     Slot3: LEATHER
-    Slot4: CHEST
+    Slot4: BACKPACK9 # ALLOWS FOR UPGRADING SMALLER BACKPACK
     Slot5: LEATHER
     Slot6: IRON_INGOT
     Slot7: IRON_INGOT
@@ -46,7 +32,7 @@ Backpack27:
     Slot1: GOLD_INGOT
     Slot2: GOLD_INGOT
     Slot3: LEATHER
-    Slot4: CHEST
+    Slot4: BACKPACK18
     Slot5: LEATHER
     Slot6: GOLD_INGOT
     Slot7: GOLD_INGOT
@@ -59,7 +45,7 @@ Backpack36:
     Slot1: IRON_BLOCK
     Slot2: IRON_BLOCK
     Slot3: LEATHER
-    Slot4: CHEST
+    Slot4: BACKPACK27
     Slot5: LEATHER
     Slot6: IRON_BLOCK
     Slot7: IRON_BLOCK
@@ -72,7 +58,7 @@ Backpack45:
     Slot1: GOLD_BLOCK
     Slot2: GOLD_BLOCK
     Slot3: LEATHER
-    Slot4: CHEST
+    Slot4: BACKPACK36
     Slot5: LEATHER
     Slot6: GOLD_BLOCK
     Slot7: GOLD_BLOCK
@@ -85,7 +71,7 @@ Backpack54:
     Slot1: DIAMOND
     Slot2: DIAMOND
     Slot3: LEATHER
-    Slot4: CHEST
+    Slot4: BACKPACK45
     Slot5: LEATHER
     Slot6: DIAMOND
     Slot7: DIAMOND

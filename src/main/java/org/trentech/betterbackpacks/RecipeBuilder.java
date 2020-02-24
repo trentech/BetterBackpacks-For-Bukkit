@@ -78,7 +78,14 @@ public class RecipeBuilder implements Listener {
 		}
 
 		for(int x = 0; x <= index; x++) {
-			recipe.setIngredient(shapes[x],  Material.getMaterial(BetterBackpacks.getPlugin().getConfig().getString(path + ".Recipe.Slot" + x)));
+			String ingredient = BetterBackpacks.getPlugin().getConfig().getString(path + ".Recipe.Slot" + x);
+			
+			if(ingredient.startsWith("BACKPACK")) {
+				recipe.setIngredient(shapes[x], Material.getMaterial(BetterBackpacks.getPlugin().getConfig().getString("Backpack" + Integer.parseInt(ingredient.replace("BACKPACK", "")) + ".Result")));
+				EventListener.recipes.put(name, Integer.parseInt(ingredient.replace("BACKPACK", "")));
+			} else {
+				recipe.setIngredient(shapes[x],  Material.getMaterial(ingredient));
+			}
 		}
 
 		return recipe;
@@ -94,34 +101,8 @@ public class RecipeBuilder implements Listener {
 
 		NBTCompound backpack = nbti.addCompound("Backpack");
 		backpack.setInteger("Size", number);
-	//	backpack.setByteArray("Inventory", null);
-
+		backpack.setInteger("Id", UUID.randomUUID().hashCode());
+		
 		return nbti.getItem();
 	}
-	
-//	private static ItemStack[] deserialize(byte[] data) throws IOException, ClassNotFoundException {
-//		ItemStack[] contents = null;
-//
-//		ByteArrayInputStream arrayInputStream = new ByteArrayInputStream(data);
-//        BukkitObjectInputStream objectInputStream = new BukkitObjectInputStream(arrayInputStream);
-//        
-//        contents =  (ItemStack[]) objectInputStream.readObject();
-//        
-//        arrayInputStream.close();
-//        objectInputStream.close();
-//
-//		return contents;
-//	}
-//	
-//	private static byte[] serialize(ItemStack[] contents) throws IOException {
-//		ByteArrayOutputStream arrayOutputStream= new ByteArrayOutputStream();
-//
-//    	BukkitObjectOutputStream objectOutputStream = new BukkitObjectOutputStream(arrayOutputStream);
-//    	objectOutputStream.writeObject(contents);
-//    	
-//    	arrayOutputStream.close();
-//    	objectOutputStream.close();
-//    	
-//    	return arrayOutputStream.toByteArray();
-//	}
 }
