@@ -1,4 +1,14 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:5.2.0'
+    }
+}
+
 apply plugin: 'java'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 group = pluginGroup
 version = pluginVersion
@@ -26,7 +36,15 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compileOnly 'org.spigotmc:spigot-api:1.15.2-R0.1-SNAPSHOT'
-    compileOnly 'de.tr7zw:item-nbt-api-plugin:2.2.0'
+    compile group: 'de.tr7zw', name: 'item-nbt-api-plugin', version: '2.2.0'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+}
+
+shadowJar {
+    dependencies {
+        include dependency("de.tr7zw:item-nbt-api-plugin:2.2.0")
+    }
+    relocate("de.tr7zw", "shaded.de.tr7zw")
 }
 
 import org.apache.tools.ant.filters.ReplaceTokens
