@@ -64,12 +64,12 @@ public class RecipeBuilder implements Listener {
         hash.remove(player.getUniqueId());
     }
 
-	public static ShapedRecipe getRecipe(String path, String name, ItemStack result){
-		ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey(BetterBackpacks.getPlugin(), name), result);
+	public static ShapedRecipe getRecipe(String path, ItemStack result){
+		ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey(BetterBackpacks.getPlugin(), path), result);
 		char[] shapes = {'A','B','C','D','E','F','G','H','I'};
 		
 		int index;
-		if(BetterBackpacks.getPlugin().getConfig().getString(path + ".Recipe.Slot4") == null) {
+		if(BetterBackpacks.getPlugin().getConfig().getString(path + ".recipe.slot4") == null) {
 			recipe.shape("AB", "CD");
 			index = 4;
 		} else {
@@ -78,11 +78,11 @@ public class RecipeBuilder implements Listener {
 		}
 
 		for(int x = 0; x <= index; x++) {
-			String ingredient = BetterBackpacks.getPlugin().getConfig().getString(path + ".Recipe.Slot" + x);
+			String ingredient = BetterBackpacks.getPlugin().getConfig().getString(path + ".recipe.slot" + x);
 			
 			if(ingredient.startsWith("BACKPACK")) {
-				recipe.setIngredient(shapes[x], Material.getMaterial(BetterBackpacks.getPlugin().getConfig().getString("Backpack" + Integer.parseInt(ingredient.replace("BACKPACK", "")) + ".Result")));
-				EventListener.recipes.put(name, Integer.parseInt(ingredient.replace("BACKPACK", "")));
+				recipe.setIngredient(shapes[x], Material.getMaterial(BetterBackpacks.getPlugin().getConfig().getString("backpack" + Integer.parseInt(ingredient.replace("BACKPACK", "")) + ".result")));
+				EventListener.recipes.put(path, Integer.parseInt(ingredient.replace("BACKPACK", "")));
 			} else {
 				recipe.setIngredient(shapes[x],  Material.getMaterial(ingredient));
 			}
@@ -92,7 +92,7 @@ public class RecipeBuilder implements Listener {
 	}
 	
 	public static ItemStack getItem(int number){
-		ItemStack itemStack = new ItemStack(Material.getMaterial(BetterBackpacks.getPlugin().getConfig().getString("Backpack" + number + ".Result")));
+		ItemStack itemStack = new ItemStack(Material.getMaterial(BetterBackpacks.getPlugin().getConfig().getString("backpack" + number + ".result")));
 		ItemMeta itemMeta = itemStack.getItemMeta();
 		itemMeta.setDisplayName("Backpack");
 		itemStack.setItemMeta(itemMeta);

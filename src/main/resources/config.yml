@@ -1,78 +1,78 @@
-Backpack9:
-  Enable: true
-  Result: BAT_SPAWN_EGG
-  Recipe:
-    Slot0: LEATHER
-    Slot1: LEATHER
-    Slot2: LEATHER
-    Slot3: LEATHER
-    Slot4: CHEST
-    Slot5: LEATHER
-    Slot6: LEATHER
-    Slot7: LEATHER
-    Slot8: LEATHER
-Backpack18:
-  Enable: true
-  Result: SKELETON_SPAWN_EGG
-  Recipe:
-    Slot0: IRON_INGOT
-    Slot1: IRON_INGOT
-    Slot2: IRON_INGOT
-    Slot3: LEATHER
-    Slot4: BACKPACK9 # ALLOWS FOR UPGRADING SMALLER BACKPACK
-    Slot5: LEATHER
-    Slot6: IRON_INGOT
-    Slot7: IRON_INGOT
-    Slot8: IRON_INGOT
-Backpack27:
-  Enable: true
-  Result: COW_SPAWN_EGG
-  Recipe:
-    Slot0: GOLD_INGOT
-    Slot1: GOLD_INGOT
-    Slot2: GOLD_INGOT
-    Slot3: LEATHER
-    Slot4: BACKPACK18
-    Slot5: LEATHER
-    Slot6: GOLD_INGOT
-    Slot7: GOLD_INGOT
-    Slot8: GOLD_INGOT
-Backpack36:
-  Enable: true
-  Result: CHICKEN_SPAWN_EGG
-  Recipe:
-    Slot0: IRON_BLOCK
-    Slot1: IRON_BLOCK
-    Slot2: IRON_BLOCK
-    Slot3: LEATHER
-    Slot4: BACKPACK27
-    Slot5: LEATHER
-    Slot6: IRON_BLOCK
-    Slot7: IRON_BLOCK
-    Slot8: IRON_BLOCK
-Backpack45:
-  Enable: true
-  Result: ZOMBIE_SPAWN_EGG
-  Recipe:
-    Slot0: GOLD_BLOCK
-    Slot1: GOLD_BLOCK
-    Slot2: GOLD_BLOCK
-    Slot3: LEATHER
-    Slot4: BACKPACK36
-    Slot5: LEATHER
-    Slot6: GOLD_BLOCK
-    Slot7: GOLD_BLOCK
-    Slot8: GOLD_BLOCK
-Backpack54:
-  Enable: true
-  Result: SPIDER_SPAWN_EGG
-  Recipe:
-    Slot0: DIAMOND
-    Slot1: DIAMOND
-    Slot2: DIAMOND
-    Slot3: LEATHER
-    Slot4: BACKPACK45
-    Slot5: LEATHER
-    Slot6: DIAMOND
-    Slot7: DIAMOND
-    Slot8: DIAMOND
+backpack9:
+  enable: true
+  result: BAT_SPAWN_EGG
+  recipe:
+    slot0: LEATHER
+    slot1: LEATHER
+    slot2: LEATHER
+    slot3: LEATHER
+    slot4: CHEST
+    slot5: LEATHER
+    slot6: LEATHER
+    slot7: LEATHER
+    slot8: LEATHER
+backpack18:
+  enable: true
+  result: SKELETON_SPAWN_EGG
+  recipe:
+    slot0: IRON_INGOT
+    slot1: IRON_INGOT
+    slot2: IRON_INGOT
+    slot3: LEATHER
+    slot4: BACKPACK9 # ALLOWS FOR UPGRADING SMALLER BACKPACK
+    slot5: LEATHER
+    slot6: IRON_INGOT
+    slot7: IRON_INGOT
+    slot8: IRON_INGOT
+backpack27:
+  enable: true
+  result: COW_SPAWN_EGG
+  recipe:
+    slot0: GOLD_INGOT
+    slot1: GOLD_INGOT
+    slot2: GOLD_INGOT
+    slot3: LEATHER
+    slot4: BACKPACK18
+    slot5: LEATHER
+    slot6: GOLD_INGOT
+    slot7: GOLD_INGOT
+    slot8: GOLD_INGOT
+backpack36:
+  enable: true
+  result: CHICKEN_SPAWN_EGG
+  recipe:
+    slot0: IRON_BLOCK
+    slot1: IRON_BLOCK
+    slot2: IRON_BLOCK
+    slot3: LEATHER
+    slot4: BACKPACK27
+    slot5: LEATHER
+    slot6: IRON_BLOCK
+    slot7: IRON_BLOCK
+    slot8: IRON_BLOCK
+backpack45:
+  enable: true
+  result: ZOMBIE_SPAWN_EGG
+  recipe:
+    slot0: GOLD_BLOCK
+    slot1: GOLD_BLOCK
+    slot2: GOLD_BLOCK
+    slot3: LEATHER
+    slot4: BACKPACK36
+    slot5: LEATHER
+    slot6: GOLD_BLOCK
+    slot7: GOLD_BLOCK
+    slot8: GOLD_BLOCK
+backpack54:
+  enable: true
+  result: SPIDER_SPAWN_EGG
+  recipe:
+    slot0: DIAMOND
+    slot1: DIAMOND
+    slot2: DIAMOND
+    slot3: LEATHER
+    slot4: BACKPACK45
+    slot5: LEATHER
+    slot6: DIAMOND
+    slot7: DIAMOND
+    slot8: DIAMOND

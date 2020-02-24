@@ -17,13 +17,14 @@ public class BetterBackpacks extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new EventListener(), this);
 
         for(int x = 9; x <= 54; x = x+9) {
-        	if(BetterBackpacks.getPlugin().getConfig().getString("Backpack" + x) != null) {
-        		if(!BetterBackpacks.getPlugin().getConfig().getBoolean("Backpack" + x + ".Enable")) {
+        	String backpack = "backpack" + x;
+        	if(BetterBackpacks.getPlugin().getConfig().getString(backpack) != null) {
+        		if(!BetterBackpacks.getPlugin().getConfig().getBoolean(backpack + ".enable")) {
         			continue;
         		}
         		
             	getLogger().info("Registering Recipe for Backpack" + x);
-            	Bukkit.addRecipe(RecipeBuilder.getRecipe("Backpack" + x, "backpack" + x, RecipeBuilder.getItem(x)));
+            	Bukkit.addRecipe(RecipeBuilder.getRecipe(backpack, RecipeBuilder.getItem(x)));
         	}
         }
     }
