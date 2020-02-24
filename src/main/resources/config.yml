@@ -14,139 +14,79 @@ Days-Before-Removal: 60
 
 Backpack9:
   Enable: true
-  Result:
-    type: BAT_SPAWN_EGG
+  Result: BAT_SPAWN_EGG
   Recipe:
-    Slot0:
-      type: LEATHER
-    Slot1:
-      type: LEATHER
-    Slot2:
-      type: LEATHER
-    Slot3:
-      type: LEATHER
-    Slot4:
-      type: CHEST
-    Slot5:
-      type: LEATHER
-    Slot6:
-      type: LEATHER
-    Slot7:
-      type: LEATHER
-    Slot8:
-      type: LEATHER
+    Slot0: LEATHER
+    Slot1: LEATHER
+    Slot2: LEATHER
+    Slot3: LEATHER
+    Slot4: CHEST
+    Slot5: LEATHER
+    Slot6: LEATHER
+    Slot7: LEATHER
+    Slot8: LEATHER
 Backpack18:
   Enable: true
-  Result:
-    type: SKELETON_SPAWN_EGG
+  Result: SKELETON_SPAWN_EGG
   Recipe:
-    Slot0:
-      type: IRON_INGOT
-    Slot1:
-      type: IRON_INGOT
-    Slot2:
-      type: IRON_INGOT
-    Slot3:
-      type: LEATHER
-    Slot4:
-      type: CHEST
-    Slot5:
-      type: LEATHER
-    Slot6:
-      type: IRON_INGOT
-    Slot7:
-      type: IRON_INGOT
-    Slot8:
-      type: IRON_INGOT
+    Slot0: IRON_INGOT
+    Slot1: IRON_INGOT
+    Slot2: IRON_INGOT
+    Slot3: LEATHER
+    Slot4: CHEST
+    Slot5: LEATHER
+    Slot6: IRON_INGOT
+    Slot7: IRON_INGOT
+    Slot8: IRON_INGOT
 Backpack27:
   Enable: true
-  Result:
-    type: COW_SPAWN_EGG
+  Result: COW_SPAWN_EGG
   Recipe:
-    Slot0:
-      type: GOLD_INGOT
-    Slot1:
-      type: GOLD_INGOT
-    Slot2:
-      type: GOLD_INGOT
-    Slot3:
-      type: LEATHER
-    Slot4:
-      type: CHEST
-    Slot5:
-      type: LEATHER
-    Slot6:
-      type: GOLD_INGOT
-    Slot7:
-      type: GOLD_INGOT
-    Slot8:
-      type: GOLD_INGOT
+    Slot0: GOLD_INGOT
+    Slot1: GOLD_INGOT
+    Slot2: GOLD_INGOT
+    Slot3: LEATHER
+    Slot4: CHEST
+    Slot5: LEATHER
+    Slot6: GOLD_INGOT
+    Slot7: GOLD_INGOT
+    Slot8: GOLD_INGOT
 Backpack36:
   Enable: true
-  Result: 
-    type: CHICKEN_SPAWN_EGG
+  Result: CHICKEN_SPAWN_EGG
   Recipe:
-    Slot0:
-      type: IRON_BLOCK
-    Slot1:
-      type: IRON_BLOCK
-    Slot2:
-      type: IRON_BLOCK
-    Slot3:
-      type: LEATHER
-    Slot4:
-      type: CHEST
-    Slot5:
-      type: LEATHER
-    Slot6:
-      type: IRON_BLOCK
-    Slot7:
-      type: IRON_BLOCK
-    Slot8:
-      type: IRON_BLOCK
+    Slot0: IRON_BLOCK
+    Slot1: IRON_BLOCK
+    Slot2: IRON_BLOCK
+    Slot3: LEATHER
+    Slot4: CHEST
+    Slot5: LEATHER
+    Slot6: IRON_BLOCK
+    Slot7: IRON_BLOCK
+    Slot8: IRON_BLOCK
 Backpack45:
   Enable: true
-  Result:
-    type: ZOMBIE_SPAWN_EGG
+  Result: ZOMBIE_SPAWN_EGG
   Recipe:
-    Slot0:
-      type: GOLD_BLOCK
-    Slot1:
-      type: GOLD_BLOCK
-    Slot2:
-      type: GOLD_BLOCK
-    Slot3:
-      type: LEATHER
-    Slot4:
-      type: CHEST
-    Slot5:
-      type: LEATHER
-    Slot6:
-      type: GOLD_BLOCK
-    Slot7:
-      type: GOLD_BLOCK
-    Slot8:
-      type: GOLD_BLOCK
+    Slot0: GOLD_BLOCK
+    Slot1: GOLD_BLOCK
+    Slot2: GOLD_BLOCK
+    Slot3: LEATHER
+    Slot4: CHEST
+    Slot5: LEATHER
+    Slot6: GOLD_BLOCK
+    Slot7: GOLD_BLOCK
+    Slot8: GOLD_BLOCK
 Backpack54:
   Enable: true
-  Result:
-    type: SPIDER_SPAWN_EGG
+  Result: SPIDER_SPAWN_EGG
   Recipe:
-    Slot0:
-      type: DIAMOND
-    Slot1:
-      type: DIAMOND
-    Slot2:
-      type: DIAMOND
-    Slot3:
-      type: LEATHER
-    Slot4:
-      type: CHEST
-    Slot5:
-      type: LEATHER
-    Slot6:
-      type: DIAMOND
-    Slot7:
-      type: DIAMOND
-    Slot8:
-      type: DIAMOND
+    Slot0: DIAMOND
+    Slot1: DIAMOND
+    Slot2: DIAMOND
+    Slot3: LEATHER
+    Slot4: CHEST
+    Slot5: LEATHER
+    Slot6: DIAMOND
+    Slot7: DIAMOND
+    Slot8: DIAMOND

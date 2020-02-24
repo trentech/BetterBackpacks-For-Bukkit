@@ -1,13 +1,11 @@
 package org.trentech.betterbackpacks;
 
-import java.util.ArrayList;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,11 +13,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.RecipeChoice.ExactChoice;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
-@SuppressWarnings("deprecation")
+import de.tr7zw.nbtapi.NBTCompound;
+import de.tr7zw.nbtapi.NBTItem;
+
 public class RecipeBuilder implements Listener {
 
 	public static ConcurrentHashMap<UUID, String> hash = new ConcurrentHashMap<>();
@@ -70,7 +69,7 @@ public class RecipeBuilder implements Listener {
 		char[] shapes = {'A','B','C','D','E','F','G','H','I'};
 		
 		int index;
-		if(BetterBackpacks.getPlugin().getConfig().getString(path + ".slot4") == null) {
+		if(BetterBackpacks.getPlugin().getConfig().getString(path + ".Recipe.Slot4") == null) {
 			recipe.shape("AB", "CD");
 			index = 4;
 		} else {
@@ -79,28 +78,50 @@ public class RecipeBuilder implements Listener {
 		}
 
 		for(int x = 0; x <= index; x++) {
-			ConfigurationSection map = BetterBackpacks.getPlugin().getConfig().getConfigurationSection(path + ".slot" + x);
-			
-			if(map != null) {
-				ItemStack itemStack = ItemStack.deserialize(map.getValues(true));
-				
-				recipe.setIngredient(shapes[x],  new ExactChoice(itemStack));
-			}
+			recipe.setIngredient(shapes[x],  Material.getMaterial(BetterBackpacks.getPlugin().getConfig().getString(path + ".Recipe.Slot" + x)));
 		}
 
 		return recipe;
 	}
 	
 	public static ItemStack getItem(int number){
-		ArrayList<String> lore = new ArrayList<String>();
-
-		ItemStack itemStack = ItemStack.deserialize(BetterBackpacks.getPlugin().getConfig().getConfigurationSection("Backpack" + number + ".Result").getValues(true));
+		ItemStack itemStack = new ItemStack(Material.getMaterial(BetterBackpacks.getPlugin().getConfig().getString("Backpack" + number + ".Result")));
 		ItemMeta itemMeta = itemStack.getItemMeta();
 		itemMeta.setDisplayName("Backpack");
-		lore.add("New Backpack");
-		itemMeta.setLore(lore);
 		itemStack.setItemMeta(itemMeta);
+		
+		NBTItem nbti = new NBTItem(itemStack);
 
-		return itemStack;
+		NBTCompound backpack = nbti.addCompound("Backpack");
+		backpack.setInteger("Size", number);
+	//	backpack.setByteArray("Inventory", null);
+
+		return nbti.getItem();
 	}
+	
+//	private static ItemStack[] deserialize(byte[] data) throws IOException, ClassNotFoundException {
+//		ItemStack[] contents = null;
+//
+//		ByteArrayInputStream arrayInputStream = new ByteArrayInputStream(data);
+//        BukkitObjectInputStream objectInputStream = new BukkitObjectInputStream(arrayInputStream);
+//        
+//        contents =  (ItemStack[]) objectInputStream.readObject();
+//        
+//        arrayInputStream.close();
+//        objectInputStream.close();
+//
+//		return contents;
+//	}
+//	
+//	private static byte[] serialize(ItemStack[] contents) throws IOException {
+//		ByteArrayOutputStream arrayOutputStream= new ByteArrayOutputStream();
+//
+//    	BukkitObjectOutputStream objectOutputStream = new BukkitObjectOutputStream(arrayOutputStream);
+//    	objectOutputStream.writeObject(contents);
+//    	
+//    	arrayOutputStream.close();
+//    	objectOutputStream.close();
+//    	
+//    	return arrayOutputStream.toByteArray();
+//	}
 }

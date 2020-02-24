@@ -2,6 +2,7 @@ name: BetterBackpacks
 main: org.trentech.betterbackpacks.BetterBackpacks
 version: 1.3.0
 api-version: 1.13
+depend: [NBTAPI]
 commands:
   backpack:
     description: Better Backpacks
