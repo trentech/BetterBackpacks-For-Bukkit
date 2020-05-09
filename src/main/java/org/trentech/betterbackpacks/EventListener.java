@@ -127,7 +127,13 @@ public class EventListener implements Listener {
 		if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) {
 			return;
 		}
+		
 		ItemStack itemStack = player.getInventory().getItemInMainHand();
+		
+		if(itemStack.getType().equals(Material.AIR)) {
+			return;
+		}
+		
 		NBTItem nbti = new NBTItem(itemStack);
 		
 		if(!nbti.hasKey("Backpack")) {
