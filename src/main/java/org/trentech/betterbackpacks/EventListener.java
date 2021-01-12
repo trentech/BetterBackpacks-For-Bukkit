@@ -49,6 +49,10 @@ public class EventListener implements Listener {
     public void onCraftItemEvent(CraftItemEvent event) {
     	ItemStack itemStack = event.getCursor();
     	
+    	if(itemStack == null || itemStack.getType().equals(Material.AIR)) {
+    		return;
+    	}
+    	
 		NBTItem nbtResult = new NBTItem(itemStack);
 		
 		if(!nbtResult.hasKey("Backpack")) {
