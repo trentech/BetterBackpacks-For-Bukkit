@@ -1,6 +1,6 @@
 name: BetterBackpacks
 main: org.trentech.betterbackpacks.BetterBackpacks
-version: 2.0.3
+version: 2.0.5
 api-version: 1.13
 commands:
   backpack:
