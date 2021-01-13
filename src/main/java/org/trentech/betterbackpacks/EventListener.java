@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.bukkit.Material;
+import org.bukkit.block.Container;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -132,6 +133,14 @@ public class EventListener implements Listener {
 			return;
 		}
 		
+    	if(event.getClickedBlock() != null && event.getClickedBlock().getType().equals(Material.CRAFTING_TABLE) || event.getClickedBlock().getType().equals(Material.ENCHANTING_TABLE) || event.getClickedBlock().getType().equals(Material.STONECUTTER)){
+    		return;
+    	}
+    	
+    	if(event.getClickedBlock() != null && event.getClickedBlock().getState() instanceof Container){
+    		return;
+    	}
+    	
 		ItemStack itemStack = player.getInventory().getItemInMainHand();
 		
 		if(itemStack.getType().equals(Material.AIR)) {
