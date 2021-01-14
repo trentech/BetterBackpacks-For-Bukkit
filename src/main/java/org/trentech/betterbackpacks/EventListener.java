@@ -127,34 +127,34 @@ public class EventListener implements Listener {
 
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerInteractEvent(PlayerInteractEvent event){
-		Player player = event.getPlayer();
-		
 		if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) {
 			return;
 		}
 		
-    	if(event.getClickedBlock() != null && event.getClickedBlock().getType().equals(Material.CRAFTING_TABLE) || event.getClickedBlock().getType().equals(Material.ENCHANTING_TABLE) || event.getClickedBlock().getType().equals(Material.STONECUTTER)){
-    		return;
-    	}
-    	
-    	if(event.getClickedBlock() != null && event.getClickedBlock().getState() instanceof Container){
-    		return;
-    	}
-    	
+		Player player = event.getPlayer();
+
 		ItemStack itemStack = player.getInventory().getItemInMainHand();
 		
 		if(itemStack.getType().equals(Material.AIR)) {
 			return;
 		}
-		
+
 		NBTItem nbti = new NBTItem(itemStack);
 		
 		if(!nbti.hasKey("Backpack")) {
 			return;
 		}
-		
-		event.setCancelled(true);
 
+    	if(event.getClickedBlock() != null && (event.getClickedBlock().getType().equals(Material.CRAFTING_TABLE) || event.getClickedBlock().getType().equals(Material.ENCHANTING_TABLE) || event.getClickedBlock().getType().equals(Material.STONECUTTER))){
+    		return;
+    	}
+
+    	if(event.getClickedBlock() != null && event.getClickedBlock().getState() instanceof Container){
+    		return;
+    	}
+
+    	event.setCancelled(true);
+    	
 		NBTCompound backpack = nbti.getCompound("Backpack");
 		int size = backpack.getInteger("Size");
 		ItemStack[] items;
