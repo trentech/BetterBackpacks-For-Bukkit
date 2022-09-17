@@ -1,10 +1,10 @@
 package org.trentech.betterbackpacks;
 
+import de.tr7zw.nbtapi.NBTCompound;
+import de.tr7zw.nbtapi.NBTItem;
 import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
-
 import org.bukkit.Material;
-import org.bukkit.block.Container;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -16,81 +16,77 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.ShapedRecipe;
-
-import de.tr7zw.nbtapi.NBTCompound;
-import de.tr7zw.nbtapi.NBTItem;
 
 public class EventListener implements Listener {
+    public static ConcurrentHashMap<String, Integer> recipes = new ConcurrentHashMap<>();
 
-	public static ConcurrentHashMap<String, Integer> recipes = new ConcurrentHashMap<>();
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onPlayerClickEvent(InventoryClickEvent event) {
+        if (!event.getView().getTitle().equalsIgnoreCase("Backpack")) {
+            return;
+        }
+        ItemStack itemStack = event.getCurrentItem();
 
-	@EventHandler(priority = EventPriority.MONITOR)
-	public void onPlayerClickEvent(InventoryClickEvent event){
-		if(!event.getView().getTitle().equalsIgnoreCase("Backpack")) {
-			return;
-		}
-		ItemStack itemStack = event.getCurrentItem();
-		
-		if(itemStack == null){
-			return;
-		}
-		
-		NBTItem nbtResult = new NBTItem(itemStack);
-		
-		if(!nbtResult.hasKey("Backpack")) {
-			return;
-		}
-		
-		event.setCancelled(true);
-	}
-	
+        if (itemStack == null) {
+            return;
+        }
+
+        NBTItem nbtResult = new NBTItem(itemStack);
+
+        if (!nbtResult.hasKey("Backpack").booleanValue()) {
+            return;
+        }
+
+        event.setCancelled(true);
+    }
+
     @EventHandler
     public void onCraftItemEvent(CraftItemEvent event) {
-    	ItemStack itemStack = event.getCursor();
-    	
-    	if(itemStack == null || itemStack.getType().equals(Material.AIR)) {
-    		return;
-    	}
-    	
-		NBTItem nbtResult = new NBTItem(itemStack);
-		
-		if(!nbtResult.hasKey("Backpack")) {
-			return;
-		}
-		
-		event.setCancelled(true);
+        ItemStack itemStack = event.getCursor();
+
+        if (itemStack == null || itemStack.getType().equals(Material.AIR)) {
+            return;
+        }
+
+        NBTItem nbtResult = new NBTItem(itemStack);
+
+        if (!nbtResult.hasKey("Backpack").booleanValue()) {
+            return;
+        }
+
+        event.setCancelled(true);
     }
-    
+
     @EventHandler
     public void onPrepareItemCraftEvent(PrepareItemCraftEvent event) {
-    	ItemStack result = event.getInventory().getResult();
-    	
-    	if(result == null) {
-    		return;
-    	}
+        ItemStack result = event.getInventory().getResult();
 
-    	if(!(event.getRecipe() instanceof ShapedRecipe)) {
-    		return;
-    	}
-    	
-		NBTItem nbtResult = new NBTItem(result);
-		
-		if(!nbtResult.hasKey("Backpack")) {
-			return;
-		}
+        if (result == null) {
+            return;
+        }
 
-		NBTCompound resultTag = nbtResult.getCompound("Backpack");
-		
-		int size = resultTag.getInteger("Size");
-		
-		if(!recipes.containsKey("backpack" + size)) {
-			return;
-		}
+        if (!(event.getRecipe() instanceof org.bukkit.inventory.ShapedRecipe)) {
+            return;
+        }
 
-		boolean correct = false;
-    	for(ItemStack itemStack : event.getInventory().getMatrix()) {
+        NBTItem nbtResult = new NBTItem(result);
+
+        if (!nbtResult.hasKey("Backpack").booleanValue()) {
+            return;
+        }
+
+        NBTCompound resultTag = nbtResult.getCompound("Backpack");
+
+        int size = resultTag.getInteger("Size").intValue();
+
+        if (!recipes.containsKey("backpack" + size)) {
+            return;
+        }
+
+        boolean correct = false;
+        for(ItemStack itemStack : event.getInventory().getMatrix()) {
     		if(itemStack == null) {
     			continue;
     		} 		
@@ -125,96 +121,96 @@ public class EventListener implements Listener {
     	}
     }
 
-	@EventHandler(priority = EventPriority.MONITOR)
-	public void onPlayerInteractEvent(PlayerInteractEvent event){
-		if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) {
-			return;
-		}
-		
-		Player player = event.getPlayer();
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onPlayerInteractEvent(PlayerInteractEvent event) {
+        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) {
+            return;
+        }
 
-		ItemStack itemStack = player.getInventory().getItemInMainHand();
-		
-		if(itemStack.getType().equals(Material.AIR)) {
-			return;
-		}
+        Player player = event.getPlayer();
 
-		NBTItem nbti = new NBTItem(itemStack);
-		
-		if(!nbti.hasKey("Backpack")) {
-			return;
-		}
+        ItemStack itemStack = player.getInventory().getItemInMainHand();
 
-    	if(event.getClickedBlock() != null && (event.getClickedBlock().getType().equals(Material.CRAFTING_TABLE) || event.getClickedBlock().getType().equals(Material.ENCHANTING_TABLE) || event.getClickedBlock().getType().equals(Material.STONECUTTER))){
-    		return;
-    	}
+        if (itemStack.getType().equals(Material.AIR)) {
+            return;
+        }
 
-    	if(event.getClickedBlock() != null && event.getClickedBlock().getState() instanceof Container){
-    		return;
-    	}
+        NBTItem nbti = new NBTItem(itemStack);
 
-    	event.setCancelled(true);
-    	
-		NBTCompound backpack = nbti.getCompound("Backpack");
-		int size = backpack.getInteger("Size");
-		ItemStack[] items;
-		
-		if(!backpack.hasKey("Inventory")) {
-			items = BetterBackpacks.getPlugin().getServer().createInventory(player, size).getContents();
-			
-			try {
-				backpack.setByteArray("Inventory", Utils.serialize(items));
-			} catch (IllegalArgumentException | IOException e) {
-				e.printStackTrace();
-				return;
-			}
-			
-			itemStack = nbti.getItem();
-			player.getInventory().setItemInMainHand(itemStack);
-		} else {
-			try {
-				items = Utils.deserialize(backpack.getByteArray("Inventory"));
-			} catch (ClassNotFoundException | IOException e) {
-				e.printStackTrace();
-				return;
-			}
-		}
-		
-		Inventory inventory = BetterBackpacks.getPlugin().getServer().createInventory(player, size, "Backpack");
-		inventory.setContents(items);
+        if (!nbti.hasKey("Backpack").booleanValue()) {
+            return;
+        }
 
-		player.openInventory(inventory);
-	}
-	
-	@EventHandler(priority = EventPriority.MONITOR)
-	public void onPlayerCloseEvent(InventoryCloseEvent event){
-		if(!event.getView().getTitle().contains("Backpack")){
-			return;
-		}
+        if (event.getClickedBlock() != null && (event.getClickedBlock().getType().equals(Material.CRAFTING_TABLE) || event.getClickedBlock().getType().equals(Material.ENCHANTING_TABLE) || event.getClickedBlock().getType().equals(Material.STONECUTTER))) {
+            return;
+        }
 
-		ItemStack itemStack = event.getPlayer().getInventory().getItemInMainHand();
-		Inventory inventory = event.getInventory();
-		
-		NBTItem nbti = new NBTItem(itemStack);
-		NBTCompound backpack = nbti.getCompound("Backpack");
-		int size = backpack.getInteger("Size");		
-		
-		ItemStack[] invArray = inventory.getContents();
-	    ItemStack[] newInv = new ItemStack[size];
-    
-	    for (int i = 0; i < size; i++) {
-	    	newInv[i] = invArray[i];
-	    }
+        if (event.getClickedBlock() != null && event.getClickedBlock().getState() instanceof org.bukkit.block.Container) {
+            return;
+        }
 
-	    try {
-			backpack.setByteArray("Inventory", Utils.serialize(newInv));
-		} catch (IOException e) {
-			e.printStackTrace();
-			return;
-		}
-	    
-	    itemStack = nbti.getItem();
-	    
-	    event.getPlayer().getInventory().setItemInMainHand(itemStack);
-	}
+        event.setCancelled(true);
+
+        NBTCompound backpack = nbti.getCompound("Backpack");
+        int size = backpack.getInteger("Size").intValue();
+        ItemStack[] items;
+        
+        if (!backpack.hasKey("Inventory").booleanValue()) {
+            items = BetterBackpacks.getPlugin().getServer().createInventory((InventoryHolder) player, size).getContents();
+
+            try {
+                backpack.setByteArray("Inventory", Utils.serialize(items));
+            } catch (IllegalArgumentException | IOException e) {
+                e.printStackTrace();
+                return;
+            }
+            
+            itemStack = nbti.getItem();
+            player.getInventory().setItemInMainHand(itemStack);
+        } else {
+            try {
+                items = Utils.deserialize(backpack.getByteArray("Inventory"));
+            } catch (ClassNotFoundException | IOException e) {
+                e.printStackTrace();
+                return;
+            }
+        }
+        
+        Inventory inventory = BetterBackpacks.getPlugin().getServer().createInventory((InventoryHolder) player, size, "Backpack");
+        inventory.setContents(items);
+
+        player.openInventory(inventory);
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onPlayerCloseEvent(InventoryCloseEvent event) {
+        if (!event.getView().getTitle().contains("Backpack")) {
+            return;
+        }
+
+        ItemStack itemStack = event.getPlayer().getInventory().getItemInMainHand();
+        Inventory inventory = event.getInventory();
+
+        NBTItem nbti = new NBTItem(itemStack);
+        NBTCompound backpack = nbti.getCompound("Backpack");
+        int size = backpack.getInteger("Size").intValue();
+
+        ItemStack[] invArray = inventory.getContents();
+        ItemStack[] newInv = new ItemStack[size];
+
+        for (int i = 0; i < size; i++) {
+            newInv[i] = invArray[i];
+        }
+
+        try {
+            backpack.setByteArray("Inventory", Utils.serialize(newInv));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+        
+        itemStack = nbti.getItem();
+
+        event.getPlayer().getInventory().setItemInMainHand(itemStack);
+    }
 }

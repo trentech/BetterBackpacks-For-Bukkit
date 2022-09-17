@@ -1,20 +1,13 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.github.jengelman.gradle.plugins:shadow:5.2.0'
-    }
+plugins {
+	id "java"
+	id "com.github.johnrengelman.shadow" version "7.1.2"
 }
-
-apply plugin: 'java'
-apply plugin: 'com.github.johnrengelman.shadow'
 
 group = pluginGroup
 version = pluginVersion
 
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
     mavenCentral()
@@ -33,23 +26,15 @@ repositories {
 }
 
 dependencies {
-    testImplementation group: 'junit', name: 'junit', version: '4.12'
-    compileOnly 'org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT'
-    implementation group: 'de.tr7zw', name: 'item-nbt-api-plugin', version: '2.7.1'
+    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+    compileOnly 'org.spigotmc:spigot-api:1.19.2-R0.1-SNAPSHOT'
+    implementation group: 'de.tr7zw', name: 'item-nbt-api-plugin', version: '2.10.0'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 }
 
 shadowJar {
     dependencies {
-        include dependency("de.tr7zw:item-nbt-api-plugin:2.7.1")
+        include dependency("de.tr7zw:item-nbt-api-plugin:2.10.0")
     }
     archiveFileName = "betterbackpacks-${project.version}.jar"
-}
-
-import org.apache.tools.ant.filters.ReplaceTokens
-
-processResources {
-    from(sourceSets.main.resources.srcDirs) {
-        filter ReplaceTokens, tokens: [version: version]
-    }
 }
