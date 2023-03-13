@@ -27,8 +27,8 @@ repositories {
 
 dependencies {
     testImplementation group: 'junit', name: 'junit', version: '4.13.2'
-    compileOnly 'org.spigotmc:spigot-api:1.19.2-R0.1-SNAPSHOT'
-    implementation group: 'de.tr7zw', name: 'item-nbt-api-plugin', version: '2.10.0'
+    compileOnly 'org.spigotmc:spigot-api:1.19.3-R0.1-SNAPSHOT'
+    implementation group: 'de.tr7zw', name: 'item-nbt-api-plugin', version: '2.11.1'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 }
 
