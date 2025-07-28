@@ -1,7 +1,8 @@
 package org.trentech.betterbackpacks;
 
-import de.tr7zw.nbtapi.NBTCompound;
-import de.tr7zw.nbtapi.NBTItem;
+import de.tr7zw.nbtapi.NBT;
+import de.tr7zw.nbtapi.iface.ReadWriteNBT;
+
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import org.bukkit.ChatColor;
@@ -96,12 +97,13 @@ public class RecipeBuilder implements Listener {
         itemMeta.setDisplayName("Backpack");
         itemStack.setItemMeta(itemMeta);
 
-        NBTItem nbti = new NBTItem(itemStack);
 
-        NBTCompound backpack = nbti.addCompound("Backpack");
-        backpack.setInteger("Size", Integer.valueOf(number));
-        backpack.setInteger("Id", Integer.valueOf(UUID.randomUUID().hashCode()));
-
-        return nbti.getItem();
+        NBT.modify(itemStack, nbt -> {
+        	ReadWriteNBT backpack = nbt.getOrCreateCompound("Backpack");
+        	backpack.setInteger("Size", Integer.valueOf(number));
+        	backpack.setInteger("Id", Integer.valueOf(UUID.randomUUID().hashCode()));
+        });
+        
+        return itemStack;
     }
 }

@@ -1,5 +1,6 @@
 package org.trentech.betterbackpacks;
 
+import de.tr7zw.nbtapi.NBT;
 import de.tr7zw.nbtapi.NBTCompound;
 import de.tr7zw.nbtapi.NBTItem;
 import java.io.IOException;
