@@ -1,14 +1,15 @@
 package org.trentech.betterbackpacks;
 
-import de.tr7zw.nbtapi.NBT;
-import de.tr7zw.nbtapi.iface.ReadWriteNBT;
-import de.tr7zw.nbtapi.iface.ReadableNBT;
+import de.tr7zw.changeme.nbtapi.NBT;
+import de.tr7zw.changeme.nbtapi.iface.ReadWriteNBT;
+import de.tr7zw.changeme.nbtapi.iface.ReadableNBT;
 
 import java.io.IOException;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -19,6 +20,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
@@ -26,6 +28,17 @@ import org.bukkit.inventory.ItemStack;
 public class EventListener implements Listener {
     public static ConcurrentHashMap<String, Integer> recipes = new ConcurrentHashMap<>();
 
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onPlayerJoinEvent(PlayerJoinEvent event) {
+		for (int x = 9; x <= 54; x += 9) {
+			String backpack = "backpack" + x;
+			
+			if (BetterBackpacks.getPlugin().getConfig().getString(backpack) != null && BetterBackpacks.getPlugin().getConfig().getBoolean(backpack + ".enable")) {
+				event.getPlayer().discoverRecipe(new NamespacedKey(BetterBackpacks.getPlugin(), backpack));
+			} 
+		}   	   	
+    }
+    
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerClickEvent(InventoryClickEvent event) {
         if (!event.getView().getTitle().equalsIgnoreCase("Backpack")) {

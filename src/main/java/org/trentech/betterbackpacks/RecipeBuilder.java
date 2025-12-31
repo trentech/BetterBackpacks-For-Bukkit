@@ -1,7 +1,7 @@
 package org.trentech.betterbackpacks;
 
-import de.tr7zw.nbtapi.NBT;
-import de.tr7zw.nbtapi.iface.ReadWriteNBT;
+import de.tr7zw.changeme.nbtapi.NBT;
+import de.tr7zw.changeme.nbtapi.iface.ReadWriteNBT;
 
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -17,7 +17,6 @@ import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.plugin.Plugin;
 
 public class RecipeBuilder implements Listener {
     public static ConcurrentHashMap<UUID, String> hash = new ConcurrentHashMap<>();
@@ -65,7 +64,7 @@ public class RecipeBuilder implements Listener {
     }
     
     public static ShapedRecipe getRecipe(String path, ItemStack result) {     
-        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey((Plugin) BetterBackpacks.getPlugin(), path), result);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey(BetterBackpacks.getPlugin(), path), result);
         char[] shapes = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'};
 
         int index;
